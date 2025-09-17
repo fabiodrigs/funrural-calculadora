@@ -5,53 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora FUNRURAL</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 30px; line-height: 1.6; max-width: 800px; margin: auto; }
-    label, input, button { display: block; margin: 10px 0; }
-    .result, .info { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 700px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+
+    input:focus {
+      border-color: #1a73e8;
+      outline: none;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-calc {
+      background: #1a73e8;
+      color: white;
+    }
+
+    .btn-calc:hover {
+      background: #1558b0;
+    }
+
+    .btn-clear {
+      background: #e8e8e8;
+      color: #444;
+    }
+
+    .btn-clear:hover {
+      background: #ccc;
+    }
+
+    .result {
+      background: #f0f8ff;
+      border: 1px solid #cce0ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .result h2 {
+      margin-top: 0;
+      color: #1a73e8;
+    }
+
+    .info {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .info h2, .info h3 {
+      color: #444;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Calculadora de FUNRURAL</h1>
+  <div class="container">
+    <h1>Calculadora de FUNRURAL</h1>
 
-  <label for="valor">Valor da compra (R$):</label>
-  <input type="number" id="valor" placeholder="Ex: 1000.00" step="0.01" />
-  <button onclick="calcular()">Calcular</button>
+    <label for="valor">Valor da compra (R$):</label>
+    <input type="text" id="valor" placeholder="Ex: 1.000,00" />
 
-  <div class="result" id="resultado"></div>
+    <div class="buttons">
+      <button class="btn-calc" onclick="calcular()">Calcular</button>
+      <button class="btn-clear" onclick="resetar()">Limpar</button>
+    </div>
 
-  <div class="info">
-    <h2>O que é o FUNRURAL?</h2>
-    <p>É uma contribuição previdenciária paga pela empresa que adquire produção rural de pessoa física. Incide sobre o valor bruto da comercialização.</p>
+    <div class="result" id="resultado"></div>
 
-    <h3>Base legal:</h3>
-    <ul>
-      <li>Art. 25 e 30 da Lei 8.212/91</li>
-      <li>Lei 13.606/2018</li>
-      <li>IN RFB nº 2.043/2021</li>
-    </ul>
+    <div class="info">
+      <h2>O que é o FUNRURAL?</h2>
+      <p>É uma contribuição previdenciária paga pela empresa que adquire produção rural de pessoa física. Incide sobre o valor bruto da comercialização.</p>
 
-    <h3>Alíquotas:</h3>
-    <ul>
-      <li>INSS: 1,2%</li>
-      <li>RAT: 0,1%</li>
-      <li>SENAR: 0,2%</li>
-      <li><strong>Total: 1,5%</strong></li>
-    </ul>
+      <h3>Base legal:</h3>
+      <ul>
+        <li>Art. 25 e 30 da Lei 8.212/91</li>
+        <li>Lei 13.606/2018</li>
+        <li>IN RFB nº 2.043/2021</li>
+      </ul>
 
-    <h2>Como declarar na Reinf (caso não tenha sistema):</h2>
-    <ol>
-      <li>Acesse o <strong>e-CAC</strong> da Receita Federal</li>
-      <li>Preencha o evento <strong>R-2055</strong></li>
-      <li>Informe CPF do produtor, data, valor da nota, e alíquotas</li>
-      <li>Feche a Reinf e gere a guia via <strong>DCTFWeb</strong></li>
-    </ol>
+      <h3>Alíquotas:</h3>
+      <ul>
+        <li>INSS: 1,2%</li>
+        <li>RAT: 0,1%</li>
+        <li>SENAR: 0,2%</li>
+        <li><strong>Total: 1,5%</strong></li>
+      </ul>
 
-    <p>Fonte: <a href="https://cnabrasil.org.br/publicacoes/adquirentes" target="_blank">CNA – Guia para Adquirentes</a></p>
+      <h2>Como declarar na Reinf (caso não tenha sistema):</h2>
+      <ol>
+        <li>Acesse o <strong>e-CAC</strong> da Receita Federal</li>
+        <li>Preencha o evento <strong>R-2055</strong></li>
+        <li>Informe CPF do produtor, data, valor da nota, e alíquotas</li>
+        <li>Feche a Reinf e gere a guia via <strong>DCTFWeb</strong></li>
+      </ol>
+
+      <p>Fonte: <a href="https://cnabrasil.org.br/publicacoes/adquirentes" target="_blank">CNA – Guia para Adquirentes</a></p>
+    </div>
   </div>
 
   <script>
+    const formatar = (num) => num.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
     function calcular() {
-      const valor = parseFloat(document.getElementById("valor").value);
+      let valor = document.getElementById("valor").value.replace(/\./g, "").replace(",", ".");
+      valor = parseFloat(valor);
       if (isNaN(valor) || valor <= 0) {
         alert("Insira um valor válido.");
         return;
@@ -65,13 +193,22 @@
       document.getElementById("resultado").innerHTML = `
         <h2>Resultado:</h2>
         <ul>
-          <li>INSS (1,2%): R$ ${inss.toFixed(2)}</li>
-          <li>RAT (0,1%): R$ ${rat.toFixed(2)}</li>
-          <li>SENAR (0,2%): R$ ${senar.toFixed(2)}</li>
-          <li><strong>Total: R$ ${total.toFixed(2)}</strong></li>
+          <li>INSS (1,2%): ${formatar(inss)}</li>
+          <li>RAT (0,1%): ${formatar(rat)}</li>
+          <li>SENAR (0,2%): ${formatar(senar)}</li>
+          <li><strong>Total: ${formatar(total)}</strong></li>
         </ul>
       `;
     }
+
+    function resetar() {
+      document.getElementById("valor").value = "";
+      document.getElementById("resultado").innerHTML = "";
+    }
+
+    document.getElementById("valor").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") calcular();
+    });
   </script>
 </body>
 </html>
