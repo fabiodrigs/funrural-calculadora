@@ -22,11 +22,17 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #1a73e8;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
       margin-bottom: 20px;
     }
 
@@ -34,6 +40,7 @@
       font-weight: bold;
       margin-top: 15px;
       display: block;
+      text-align: left;
     }
 
     input {
@@ -96,6 +103,7 @@
       padding: 20px;
       border-radius: 8px;
       margin-top: 15px;
+      text-align: left;
     }
 
     .result h2 {
@@ -109,6 +117,7 @@
       background: #fafafa;
       border: 1px solid #ddd;
       border-radius: 8px;
+      text-align: left;
     }
 
     .info h2, .info h3 {
@@ -127,10 +136,20 @@
     a:hover {
       text-decoration: underline;
     }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Logo no topo -->
+    <img src="SÍMBOLO - PNG-03.PNG" alt="Logo" class="logo" />
+
     <h1>Calculadora de FUNRURAL</h1>
 
     <label for="valor">Valor da compra (R$):</label>
@@ -210,5 +229,9 @@
       if (e.key === "Enter") calcular();
     });
   </script>
+
+  <footer>
+    Faware © 2025
+  </footer>
 </body>
 </html>
